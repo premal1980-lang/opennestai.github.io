@@ -7,14 +7,14 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    background: #000;
-    color: #fff;
+    background: #F0EBF8;
+    color: #2D2640;
     font-family: 'Courier New', monospace;
     min-height: 100vh;
     padding: 40px 24px;
   }
   header {
-    border-bottom: 1px solid #333;
+    border-bottom: 2px solid #C9B8E8;
     padding-bottom: 24px;
     margin-bottom: 40px;
   }
@@ -23,10 +23,11 @@
     font-weight: bold;
     letter-spacing: 4px;
     text-transform: uppercase;
+    color: #6B4FA0;
   }
-  .logo span { color: #888; }
+  .logo span { color: #C9A8E0; }
   .tagline {
-    color: #555;
+    color: #9B88B8;
     font-size: 0.75rem;
     letter-spacing: 2px;
     margin-top: 6px;
@@ -38,16 +39,21 @@
     gap: 20px;
   }
   .card {
-    border: 1px solid #2a2a2a;
+    background: #fff;
+    border: 1.5px solid #D8CCF0;
+    border-radius: 12px;
     padding: 24px;
-    position: relative;
-    transition: border-color 0.2s;
+    box-shadow: 0 2px 12px rgba(107,79,160,0.07);
+    transition: box-shadow 0.2s, border-color 0.2s;
   }
-  .card:hover { border-color: #fff; }
+  .card:hover {
+    border-color: #A07CC8;
+    box-shadow: 0 4px 20px rgba(107,79,160,0.15);
+  }
   .card-tag {
     font-size: 0.65rem;
     letter-spacing: 3px;
-    color: #555;
+    color: #A07CC8;
     text-transform: uppercase;
     margin-bottom: 12px;
   }
@@ -56,18 +62,19 @@
     font-weight: bold;
     letter-spacing: 1px;
     margin-bottom: 8px;
+    color: #3D2A6A;
   }
   .card-desc {
     font-size: 0.8rem;
-    color: #888;
-    line-height: 1.6;
+    color: #7A6A90;
+    line-height: 1.7;
     margin-bottom: 20px;
   }
   .meta {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    border-top: 1px solid #1a1a1a;
+    gap: 7px;
+    border-top: 1px solid #EDE6F8;
     padding-top: 16px;
   }
   .meta-row {
@@ -75,23 +82,24 @@
     justify-content: space-between;
     font-size: 0.72rem;
   }
-  .meta-label { color: #444; text-transform: uppercase; letter-spacing: 1px; }
-  .meta-value { color: #aaa; }
+  .meta-label { color: #B0A0C8; text-transform: uppercase; letter-spacing: 1px; }
+  .meta-value { color: #5A4080; font-weight: 600; }
   .status-dot {
     display: inline-block;
-    width: 6px;
-    height: 6px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
-    background: #fff;
-    margin-right: 6px;
+    background: #80D0A8;
+    margin-right: 7px;
     animation: pulse 2s infinite;
+    vertical-align: middle;
   }
   @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(128,208,168,0.5); }
+    50% { opacity: 0.7; box-shadow: 0 0 0 4px rgba(128,208,168,0); }
   }
   .card-actions {
-    margin-top: 16px;
+    margin-top: 18px;
     display: flex;
     gap: 10px;
   }
@@ -100,22 +108,31 @@
     font-size: 0.7rem;
     letter-spacing: 1px;
     text-transform: uppercase;
-    padding: 6px 14px;
-    border: 1px solid #333;
+    padding: 7px 16px;
+    border-radius: 6px;
+    border: 1.5px solid #C9B8E8;
     background: none;
-    color: #aaa;
+    color: #7A5AB0;
     cursor: pointer;
     text-decoration: none;
     transition: all 0.15s;
   }
-  .btn:hover { border-color: #fff; color: #fff; }
-  .btn-primary { border-color: #fff; color: #fff; }
+  .btn:hover { background: #EDE6F8; border-color: #A07CC8; color: #5A3A90; }
+  .btn-primary { background: #7A5AB0; border-color: #7A5AB0; color: #fff; }
+  .btn-primary:hover { background: #6B4FA0; border-color: #6B4FA0; color: #fff; }
+  .card-placeholder {
+    background: #FAF8FE;
+    border: 1.5px dashed #D8CCF0;
+    border-radius: 12px;
+    padding: 24px;
+    opacity: 0.6;
+  }
   footer {
     margin-top: 60px;
-    border-top: 1px solid #1a1a1a;
+    border-top: 1px solid #D8CCF0;
     padding-top: 20px;
     font-size: 0.65rem;
-    color: #333;
+    color: #B0A0C8;
     letter-spacing: 2px;
     text-transform: uppercase;
   }
@@ -165,11 +182,11 @@
     </div>
   </div>
 
-  <!-- Placeholder for future agents -->
-  <div class="card" style="border-style: dashed; opacity: 0.3;">
+  <!-- Placeholder -->
+  <div class="card-placeholder">
     <div class="card-tag">Agent 02</div>
-    <div class="card-name" style="color:#444;">&#x2014; Reserved &#x2014;</div>
-    <div class="card-desc" style="color:#333;">Next agent goes here.</div>
+    <div class="card-name" style="color:#C0B0D8;">&#x2014; Reserved &#x2014;</div>
+    <div class="card-desc" style="color:#C8BCDC;">Next agent goes here.</div>
   </div>
 
 </div>
