@@ -5,29 +5,28 @@ Generates a McKinsey-style intelligence brief on 5 UK retail accounts and posts 
 ## Files
 | File | Purpose |
 |------|---------|
-| `agent.py` | Core agent — web search + brief generation + Slack post |
-| `scheduler.py` | Legacy APScheduler (replaced by cloud routine) |
-| `run_brief.bat` | Windows Task Scheduler entry point |
-| `.env` | API keys (Anthropic + Slack) |
+| `agent.py` | Core agent — Claude + web search brief generation, Slack post |
 | `requirements.txt` | Python dependencies |
-| `cloud_agent_backup.md` | Cloud routine config backup |
+| `.github/workflows/tcs-intel-brief.yml` | GitHub Actions schedule and runner |
 
 ## How It Runs
-**Primary:** Anthropic Cloud (CCR) — routine ID `trig_01MJAruYhLnNSxQQbryxpJCV`
-Runs every 15 days (1st & 16th) at 07:00 BST. Machine does not need to be on.
+GitHub Actions workflow `TCS Intel Brief` runs on the 1st and 16th of each month at 06:00 UTC (07:00 BST). It can also be started manually from the Actions tab (`workflow_dispatch`). GitHub's scheduled runs can start a few minutes late.
 
-**Backup:** Windows Task Scheduler task "TCS Intel Agent" — same schedule, runs `run_brief.bat` locally.
+## Setup
+Add these in the repo's **Settings → Secrets and variables → Actions**:
 
-## Manual Run
-```bash
-cd C:\Users\prema\OneDrive\Desktop\tcs_intel_agent
-python agent.py
-```
+| Name | Type | Value |
+|------|------|-------|
+| `ANTHROPIC_API_KEY` | Secret | Anthropic API key |
+| `SLACK_BOT_TOKEN` | Secret | Slack bot token with `chat:write` scope |
+| `SLACK_CHANNEL` | Variable | Slack channel ID for `#tcs-intelligence` (the bot must be invited) |
+| `MODEL` | Variable (optional) | Anthropic model ID; defaults to `claude-haiku-4-5` |
 
-## Setup (if reinstalling)
+## Local Run
 ```bash
 pip install -r requirements.txt
-# Copy .env.example to .env and fill in keys
+export ANTHROPIC_API_KEY=... SLACK_BOT_TOKEN=... SLACK_CHANNEL=C0123456789
+python agent.py
 ```
 
 ## Output
